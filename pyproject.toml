@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "microboost"
+version = "0.1.0"
+description = "A compact, readable gradient boosting implementation from scratch, benchmarked against scikit-learn."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Artem Tulbovich" }]
+keywords = ["machine-learning", "gradient-boosting", "decision-trees", "from-scratch"]
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+experiments = ["scikit-learn>=1.2", "matplotlib>=3.6"]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["microboost*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
