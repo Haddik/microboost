@@ -2,11 +2,40 @@
 
 **Gradient boosting from scratch in ~350 lines of NumPy — and it matches scikit-learn.**
 
+> Учебно-исследовательский проект. Автор: **Тульбович Артём**, студент 3 курса
+> факультета искусственного интеллекта. Реализация выполнена с нуля в учебных
+> целях — чтобы разобраться в устройстве градиентного бустинга, а не заменить
+> готовую библиотеку.
+
 MicroBoost is a small, heavily-commented implementation of gradient boosted
 decision trees, written to understand the algorithm rather than to replace a
 production library. It includes a from-scratch CART regressor, a stagewise
 boosting loop with pluggable loss functions, a test suite, and reproducible
 experiments that benchmark it head-to-head against `scikit-learn`.
+
+---
+
+## О проекте (RU)
+
+**MicroBoost** — это реализация градиентного бустинга над деревьями решений «с
+нуля» на чистом NumPy. Цель работы — воспроизвести алгоритм из статьи
+Фридмана (2001) и проверить, насколько компактная и читаемая реализация
+приближается к промышленной библиотеке `scikit-learn` при одинаковых
+гиперпараметрах.
+
+**Что внутри:**
+- собственное CART-дерево регрессии (жадный поиск разбиений через префиксные
+  суммы, сложность `O(n log n)`);
+- функции потерь: квадратичная и логистическая (начальное приближение +
+  антиградиент);
+- сам бустинг: регрессор и классификатор (`microboost/boosting.py`);
+- набор из **16 тестов** (pytest) и воспроизводимые эксперименты с графиками.
+
+**Главный результат:** на стандартных датасетах реализация отстаёт от
+`scikit-learn` в пределах **~0.1% по RMSE** — то есть практически совпадает.
+Подробный разбор метода и результатов — в [`docs/report.md`](docs/report.md).
+
+---
 
 ![learning curves](docs/learning_curves.png)
 
